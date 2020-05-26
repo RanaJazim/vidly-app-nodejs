@@ -5,6 +5,7 @@ const genres = require('./routes/genre');
 const movies = require('./routes/movie');
 const user = require('./routes/user');
 
+
 const app = express();
 
 app.use(body_parser.urlencoded({ extended: false }));
