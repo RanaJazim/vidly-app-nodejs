@@ -8,6 +8,28 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
+    role: {
+        type: String,
+        default: "user"
+    },
+    movieInfo: [
+        {
+            movies: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Movie"
+            },
+            isPurchased: {
+                type: Boolean,
+                default: true
+            }
+        }
+    ],
+    favourites: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Movie"
+        }
+    ]
 });
 
 // hashing the password
