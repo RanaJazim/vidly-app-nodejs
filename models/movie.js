@@ -20,7 +20,7 @@ const movie_schema = new mongoose.Schema({
         type: Number,
         default: 50
     },
-    noInStocks: {
+    stockLength: {
         type: Number,
         default: 0
     }
