@@ -1,22 +1,20 @@
 const express = require('express');
-
-const router = express.Router();
-
-router.get('/', (req, res) => {
-    res.send(`Fetching movies for this genre id ${req.query.genreId}`);
-});
-
-router.post('/create', (req, res) => {
-    res.json(req.body);
-});
-
 const _ = require('underscore');
 const movie_service = require('../services/movie_service');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    res.json("Fetch Movies");
+    const queryParam = req.query.genreId;
+    const genreId = queryParam == null ? "" : queryParam;
+
+    const movies = await movie_service.fetchMovie(genreId);
+    res.json(movies);
+});
+
+router.get('/:id', async (req, res) => {
+    const movie = await movie_service.fetchSingleMovie(req.params.id);
+    res.json(movie);
 });
 
 router.post('/create', async (req, res) => {
@@ -34,7 +32,10 @@ router.post('/create', async (req, res) => {
 });
 
 router.patch('/add-genres/:id', async (req, res) => {
-    res.json(req.params.id);
+    console.log(req.body.genre);
+    const movie = await movie_service.addGenres(req.body.genre, req.params.id);
+
+    res.json(movie);
 });
 
 function _splitStringToList(movie_caste) {
