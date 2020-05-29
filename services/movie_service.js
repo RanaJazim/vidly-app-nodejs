@@ -6,7 +6,13 @@ const service = {
         return await Movie.find({ genres: genreId });
     },
     fetchSingleMovie: async function(mId) {
-        return await Movie.findById(mId);
+        return await Movie.
+            findById(mId)
+            .populate({
+                path: 'genres',
+                select: '-_id'
+            })
+            .exec();
     },
     createMovie: async function(movie) {
         const created_movie = new Movie(movie);

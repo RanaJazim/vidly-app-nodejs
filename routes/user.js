@@ -28,7 +28,7 @@ router.post('/login', async (req, res) => {
 
     // setting the token
     user.token = token;
-    res.json(_.pick(user, '_id', 'name', 'email', 'token'));
+    res.json(_.pick(user, '_id', 'name', 'email', 'token', 'role', 'movieInfo', 'favourites'));
 });
 
 const validateAttr = function(user, isRegister = false) {
@@ -37,6 +37,7 @@ const validateAttr = function(user, isRegister = false) {
     else 
         var {error} = login_validator.validate(user, { abortEarly: false });
 
+    console.log(error);
     return error;
 }
 

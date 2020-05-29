@@ -15,6 +15,7 @@ const movie_schema = new mongoose.Schema({
             ref: "Genre"
         }
     ],
+    description: String,
     mainCaste: [ String ],
     pricePerMovie: {
         type: Number,
