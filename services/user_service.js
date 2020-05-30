@@ -36,6 +36,11 @@ const user_service = {
             { $push : { favourites: movie_id } },
             { safe: true }
         );
+    },
+    favourites: async function(user_id) {
+        return await User
+            .findById(user_id, '-_id name')
+            .populate('favourites');
     }
 };
 

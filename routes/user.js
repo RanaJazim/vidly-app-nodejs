@@ -46,6 +46,11 @@ router.patch('/toggle-favourites', auth, async (req, res) => {
     res.json(user);
 });
 
+router.get('/favourites', auth, async (req, res) => {
+    const user = await user_service.favourites(req.user._id);
+    res.json(user.favourites);
+});
+
 const validateAttr = function (user, isRegister = false) {
     if (isRegister)
         var { error } = validator.validate(user, { abortEarly: false });
