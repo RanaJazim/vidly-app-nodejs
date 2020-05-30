@@ -32,7 +32,6 @@ router.post('/create', async (req, res) => {
 });
 
 router.patch('/add-genres/:id', async (req, res) => {
-    console.log(req.body.genre);
     const movie = await movie_service.addGenres(req.body.genre, req.params.id);
 
     res.json(movie);

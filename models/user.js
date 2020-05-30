@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const joi = require('@hapi/joi');
 const _ = require('underscore');
+const { private_key } = require('../config/private_key');
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -57,7 +58,6 @@ userSchema.pre('save', function(next) {
 // generating token
 userSchema.method('generateToken', async function() {
     const payload = { _id: this._id, name: this.name, email: this.email };
-    const private_key = "secretKey";
     const token = await jwt.sign(payload, private_key);
 
     return token;

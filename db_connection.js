@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 module.exports = function() {
     mongoose.connect(
-        'mongodb://localhost:27017/vidly_app', 
+        'mongodb://localhost:27017/vidly_app_test', 
         {useNewUrlParser: true, useUnifiedTopology: true}
     )
         .then((res) => console.log("Successfully connected to the database.."))
